@@ -1,7 +1,7 @@
 module.exports = {
     credentials: {
-        accessKeyId: 'AKIAJWH7D3IJCXBQWQWQ',
-        secretAccessKey: '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'
+        accessKeyId: ${{secrets.AWS_ACCESS_KEY_ID_1}},
+        secretAccessKey: ${{secrets.AWS_SECRET_ACCESS_KEY_ID_1}}
     },
     buckets: {
         codejudge: {
