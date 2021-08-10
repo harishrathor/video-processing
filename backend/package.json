@@ -1,0 +1,32 @@
+{
+  "name": "express",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start-dev": "nodemon ./bin/www",
+    "kill-port": "kill -9 `lsof -w -n -i tcp:8080| awk '{print $2}'|awk 'END{print}'`;",
+    "start": "npm install && rm package-lock.json && npm run kill-port && npm run start-dev",
+    "connect-server": "ssh -i \"aws-instance-key_doofanew.pem\" ubuntu@ec2-52-66-214-217.ap-south-1.compute.amazonaws.com"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.683.0",
+    "connect-timeout": "^1.9.0",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "~4.17.1",
+    "http-errors": "~1.6.3",
+    "i": "^0.3.6",
+    "morgan": "~1.9.1",
+    "node-cmd": "^3.0.0",
+    "npm": "^6.14.5"
+  },
+  "config": {
+    "mongodbMemoryServer": {
+      "version": "latest"
+    }
+  },
+  "engines": {
+    "node": "12.14.0"
+  }
+}

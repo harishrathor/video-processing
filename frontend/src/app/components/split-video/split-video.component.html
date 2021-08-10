@@ -1,0 +1,91 @@
+<div class="split-component-template">
+  <div class="segment-video-template">
+    <h2>Segment Video <span id="stateMessage" *ngIf="processingMessage">({{processingMessage}})</span></h2>
+  <div class="form video-split-form">
+    <div class="form-field">
+        <div class="form-field__control">
+          <label for="videoURL" class="form-field__label">Video Link</label>
+          <input type="url" class="form-field__input video-link" id="videoURL" aria-describedby="emailHelp"  [(ngModel)]="videoURLModel" (change)="validateUserInput()" (keyup)="validateUserInput()">
+        </div>
+    </div>
+      <div class="select form-field">
+        <label for="settingDropdown" class="select-label">Select Segment Setting</label>
+        <select id="settingDropdown" class="select-text segment-setting" [(ngModel)]="segmentSettingModel" (change)="validateUserInput()" (select)="validateUserInput()">
+          <option class="interval-duration-option" value="" >--Select Setting--</option>
+          <option class="interval-duration-option" value="Interval Duration">Interval Duration</option>
+        </select>
+        <!-- <span class="select-highlight"></span>
+                  <span class="select-bar"></span> -->
+      </div>
+      <div class="form-field">
+        <div class="form-field__control" >
+          <label for="videoInterval" class="form-field__label">Interval Duration (in seconds)</label>
+          <input type="text" class="form-field__input interval-duration" id="videoInterval"  [(ngModel)]="intervalTimeModel" (change)="validateUserInput()" (keyup)="validateUserInput()">
+        </div>
+      </div>
+      <div class="submit-btn-container">
+        <button  class="waves-effect btn dark-pink process-video" (click)="processVideo()" [disabled]="!isValidInputs" type="button"><span>Segment Video</span></button>
+      </div>
+  </div>
+  
+  <div class="segmented-videos-container">
+      <div class="segmented-video-container" *ngFor="let video of videoSegments; let index = index;">
+          <video controls  class="segmented-video-{{index + 1}}" height="300" width="300">
+              <source class="segmented-video-source-{{index + 1}}" [src]="video.video_url"
+                      type="{{inputVideoContentType}}">
+          </video>
+      </div>
+  </div>
+</div>
+
+
+<!-- 
+ <div class="segment-video-template___">
+  <br>
+    <h2>Segment Video</h2>
+    <br>
+  <div id="stateMessage">{{processingMessage}}</div>
+  <br>
+  <div class="___form video-split-form row">
+    <div class="form-field____">
+        <div class="form-field__control____">
+          <label for="videoURL" class="form-field__label____">Video Link</label>
+          <input type="url" class="form-field__input____ video-link" id="videoURL" aria-describedby="emailHelp"  [(ngModel)]="videoURLModel" (change)="validateUserInput()" (keyup)="validateUserInput()">
+        </div>
+    </div>
+      <!-- <br> --/>
+        <div class="___select form-field____">
+          <label for="settingDropdown" class="___select-label">Select Segment Setting</label>
+          <select id="settingDropdown" class="___select-text segment-setting" [(ngModel)]="segmentSettingModel" (change)="validateUserInput()" (select)="validateUserInput()">
+            <option class="interval-duration-option" >Interval Duration</option>
+          </select>
+          <!-- <span class="___select-highlight"></span>
+					<span class="___select-bar"></span> --/>
+        </div>
+      <!-- <br> --/>
+      <div class="form-field____">
+        <div class="form-field__control____" >
+          <label for="videoInterval" class="form-field__label____">Interval duration (in seconds)</label>
+          <input type="text" class="form-field__input____ interval-duration" id="videoInterval"  [(ngModel)]="intervalTimeModel" (change)="validateUserInput()" (keyup)="validateUserInput()">
+        </div>
+      </div>
+      <br>
+      <div class="submit-btn-container">
+        <button  class="waves-effect btn dark-pink process-video" (click)="processVideo()" [disabled]="!isValidInputs" type="button"><span>Segment Video</span></button>
+      </div>
+  </div>
+  
+  <div class="segmented-videos-container">
+      <div class="segmented-video-container" *ngFor="let video of videoSegments; let index = index;">
+          <video controls  class="segmented-video-{{index + 1}}">
+              <source class="segmented-video-source-{{index + 1}}" src="{{video.video_url}}"
+                      type="{{inputVideoContentType}}">
+          </video>
+          
+      </div>
+  </div>
+</div>
+
+ -->
+
+</div>

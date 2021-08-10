@@ -1,0 +1,419 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+$primary-color: #b11adc;
+$animation-duration: 0.4s;
+
+@mixin label-inactive() {
+  font-size: 16px;
+  transform: translateY(0);
+}
+
+@mixin label-active() {
+  font-size: 14px;
+  transform: translateY(-14px);
+}
+
+.form-field {
+  display: block;
+  margin-bottom: 16px;
+  margin-left: 20px;
+}
+.form-field__label {
+    transform: translateY(-20px);
+    padding: 18px 0 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.form-field__control {
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.form-field__bar {
+  border-bottom: 2px solid $primary-color;
+  bottom: 0;
+  content: "";
+  display: block;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  transform: scaleX(0);
+  transition: all $animation-duration;
+  width: 1%;
+}
+.form-field__input,
+.form-field__textarea {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #999;
+  color: #333;
+  display: block;
+  font-size: 1.2rem;
+  margin-top: 24px;
+  outline: 0;
+  padding: 0 12px 10px 12px;
+  width: 100%;
+  
+  // IE 10-11
+  &:-ms-input-placeholder {
+    ~ .form-field__label {
+      @include label-inactive();
+    }
+  }
+  // All other browsers except Edge
+  &:placeholder-shown {
+    ~ .form-field__label {
+      @include label-inactive();
+    }
+  }
+  &:focus {
+    ~ .form-field__label {
+      color: #b11adc;
+      @include label-active();
+    }
+    ~ .form-field__bar {
+      border-bottom: 2px solid $primary-color;
+      transform: scaleX(150);
+    }
+  }
+}
+.form-field__textarea {
+  height: 150px;
+}
+
+/* For Select field */
+
+.wrap {
+  position: absolute;
+  right: 0;
+  top: 40%;
+  width: 100%;
+  left: 0;
+  margin: 0 auto;
+}
+
+/* select starting stylings ------------------------------*/
+.select {
+  font-family:
+    'Roboto','Helvetica','Arial',sans-serif;
+	position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.select-text:focus ~ .select-label, .select-text:valid ~ .select-label {
+	color: #34495e;
+	top: -20px;
+	transition: 0.2s ease all;
+	font-size: 14px;
+}
+
+/* BOTTOM BARS ================================= */
+.select-bar {
+	position: relative;
+	display: block;
+	width: 100%;
+}
+
+.select-bar:before, .select-bar:after {
+	content: '';
+	height: 2px;
+	width: 0;
+	bottom: 1px;
+	position: absolute;
+  /* background: #2F80ED; */
+  background: #999;
+	transition: 0.2s ease all;
+}
+
+.select-bar:before {
+	left: 50%;
+}
+
+.select-bar:after {
+	right: 50%;
+}
+
+/* active state */
+.select-text:focus ~ .select-bar:before, .select-text:focus ~ .select-bar:after {
+	width: 50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.select-highlight {
+	position: absolute;
+	height: 60%;
+	width: 100px;
+	top: 25%;
+	left: 0;
+	pointer-events: none;
+	opacity: 0.5;
+}
+
+
+/* Material CSS for button */
+.btn {
+  position: relative;
+
+  display: block;
+  margin: 30px;
+  padding: 0;
+
+  overflow: hidden;
+
+  border-width: 0;
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  
+  background-color: #2ecc71;
+  color: #ecf0f1;
+  
+  transition: background-color .3s;
+}
+
+.btn:hover, .btn:focus {
+  background-color: #27ae60;
+}
+
+.btn > * {
+  position: relative;
+}
+
+.btn span {
+  display: block;
+  padding: 12px 24px;
+  cursor: pointer;
+}
+
+.btn:before {
+  content: "";
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+  display: block;
+  width: 0;
+  padding-top: 0;
+    
+  border-radius: 100%;
+  
+  background-color: rgba(236, 240, 241, .3);
+  
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.btn:active:before {
+  width: 120%;
+  padding-top: 120%;
+  
+  transition: width .2s ease-out, padding-top .2s ease-out;
+}
+
+/* Styles, not important */
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html {
+  position: relative;
+  height: 100%;
+}
+
+body {
+ 
+  color: #34495e;
+  font-family: Trebuchet, Arial, sans-serif;
+}
+
+h2 {
+  font-weight: normal;
+}
+
+.btn.orange {
+  background-color: #e67e22;
+}
+
+.btn.orange:hover, .btn.orange:focus {
+  background-color: #d35400;
+}
+
+.btn.red {
+  background-color: #e74c3c;
+}
+
+.btn.red:hover, .btn.red:focus {
+  background-color: #c0392b;
+}
+
+
+.btn.dark-pink {
+  background-color: #ea3c64;
+}
+
+.btn.dark-pink:hover, .btn.dark-pink:focus {
+  background-color: #e81f4d;
+  color: #fff;
+}
+/* ea3c64 */
+.btn[disabled] {
+  opacity: .5;
+}
+
+.btn[disabled] {
+  opacity: .5;
+}
+
+.form {
+  width: 80%;
+  
+}
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+body{
+    width:100%;
+    margin:0;
+    padding:0;
+    font-family:'Montserrat', sans-serif;
+    background-image: url(./assets/bg-image-1.jpg);
+  background-size:cover;
+  background-repeat:no-repeat;
+    overflow:hidden;
+    height: 100%;
+    overflow: auto;
+}
+
+header{
+    padding :20px 10px;
+}
+.logo{
+    margin-left:40px;
+}
+.header ul {
+    color:white;
+    list-style: none;
+} 
+.right{
+    padding-right:60px;
+}
+.right a {
+    font-weight: 900;
+    letter-spacing: 2px;
+    font-size: 10px;
+    margin-top:-30px;
+    margin-right:25px;
+    padding: 10px;
+    color:#C8C8C8;
+    float: right;
+    text-decoration: none;
+}
+.right a:hover{
+    color:#FFD600;
+}
+hr{ color:#C8C8C8;
+    margin-top: -20px;
+    margin-left:70px;
+    margin-right:90px;
+    align-content: center;
+}
+.text{
+    margin-top:100px;
+    width:500px;
+    color:white;
+    padding-left: 50px;
+}
+h6{
+ font-weight:600;
+ color:#C8C8C8;
+ font-size:13px ;
+padding-bottom: 0px;
+}
+h1{
+    margin-top: -20px;
+    font-size:40px;
+    letter-spacing:3px;
+    font-weight:bold;
+}
+button{
+    background-color: #FFD600;
+    border:none;
+    border-radius:8px;
+    padding:10px;
+    font-size: 15px;
+    font-weight:bold;
+    width:120px;
+    text-align: center;
+    margin-left:60px;
+  cursor:pointer;
+  outline:none;
+}
+button:hover{
+   background-color: #e4bf05;
+}
+.left-down-image{
+    background-image: url(./assets/bg-image-1.jpg);
+    background-repeat: no-repeat;
+    background-size: 500px;
+    background-position: right top;
+    float:right;
+    color:white;
+    margin-right:20px;
+    width:500px;
+    height:160px;
+    border:2px solid #FFD600;
+    border-radius:2px ;
+}
+.head h3{
+    width:100px;
+    padding-left:10px;
+    margin-top:10px;
+    margin-left:35px;
+    font-size: 15px;
+    color: #C8C8C8;
+    font-weight: bold;
+    border-left:2px solid #FFD600;
+
+}
+
+.head  p{
+    margin-top:-10px;
+    padding-left:20px;
+    line-height: 20px;
+    font-size:15px;
+    letter-spacing: 1px;
+    font-weight:400;
+}
+
+@media (max-width:1075px){
+  body{
+    background-size:cover;
+    
+  }
+  .text{
+    margin-top:100px;
+  }
+  .left-down-image{
+    margin-right:50px;
+    margin-top:-90px;
+  }
+}
+
+.color-orange {
+  color: #e87070;
+}

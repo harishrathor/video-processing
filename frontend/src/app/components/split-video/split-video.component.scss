@@ -1,0 +1,22 @@
+.segment-video-template {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+.segmented-videos-container {
+    display: flex;
+    overflow-x: auto;
+    padding: 50px 0 0 0;
+    width: 80%;
+} 
+.segmented-video-container {
+    margin: 0 20px;
+} 
+
+.process-video {
+    margin: 0 30px;
+}
+
+  

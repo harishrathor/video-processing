@@ -1,0 +1,9 @@
+.app-root {
+    height: 100%;
+}
+.header-container {
+    height: 50px;
+}
+.content-root {
+    height: calc(100% - 50px);
+}

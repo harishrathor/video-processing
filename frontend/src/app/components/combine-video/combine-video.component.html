@@ -1,0 +1,64 @@
+<div class="combine-video-template">
+    <br>
+    <h2>Combine Video</h2>
+    <br>
+    <div id="stateMessage">{{processingMessage}}</div>
+    <br>
+    
+    <div class="combine-video-form">
+        <div class="model-controls-container">
+            <button (click)="addNewSegmentModel()" class="add-video btn dark-pink"><span>Add Video</span></button>
+        </div>
+        <div class="video-split-form" *ngFor="let modelData of segmentsModelArr; let index = index;">
+            <br>
+            <div class="form-field link-field">
+                <div class="form-field__control">
+                    <label class="form-field__label" for="videoURL_{{index}}">Video Link</label>
+                    <input type="url" class="form-field__input combine-video-{{index + 1}}" id="videoURL_{{index}}" aria-describedby="emailHelp" [(ngModel)]="modelData.video_url" (change)="validateUserInput()" (keyup)="validateUserInput()">
+                </div>
+            </div>
+            <div class="form-field time-field">
+                <div class="form-field__control">
+                    <label class="form-field__label" for="videoStartTime_{{index}}">Start time (in seconds)</label>
+                    <input type="text" [ngClass]="'form-field__input combine-video-range-duration-start-' + (index + 1)"  id="videoStartTime_{{index}}" aria-describedby="emailHelp"  [(ngModel)]="modelData.start" (change)="validateUserInput()" (keyup)="validateUserInput()">
+                </div>
+            </div>
+            <div class="form-field time-field">
+                <div class="form-field__control">
+                    <label class="form-field__label" for="videoEndTime_{{index}}">End time (in seconds)</label>
+                    <input type="text" class="form-field__input combine-video-range-duration-end-{{index + 1}}" id="videoEndTime_{{index}}" aria-describedby="emailHelp" [(ngModel)]="modelData.end" (change)="validateUserInput()" (keyup)="validateUserInput()">
+                </div>
+            </div>
+            <div class="delete-btn-container">
+                <button (click)="removeSegmentModel(index)" class="delete-combine-video-range-duratoion-{{index + 1}} btn dark-pink" ><span>Delete</span></button><!-- [disabled]="segmentsModelArr.length === 2" -->
+            </div>
+        </div>
+        <br>
+        <div class="form video-split-form">
+            <div class="form-field">
+                <div class="form-field__control">
+                    <label class="form-field__label" for="outputVideoHeight">Output Video Height</label>
+                    <input type="text" class="form-field__input video-height" id="outputVideoHeight" aria-describedby="emailHelp"  [(ngModel)]="outputVideoHeightModel" (change)="validateUserInput()" (keyup)="validateUserInput()">
+                </div>
+            </div>
+            <div class="form-field">
+                <div class="form-field__control">
+                    <label class="form-field__label" for="outputVideoWidth">Output Video Width</label>
+                    <input type="text" class="form-field__input video-width" id="outputVideoWidth" [(ngModel)]="outputVideoWidthModel" (change)="validateUserInput()" (keyup)="validateUserInput()">
+                </div>
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="btn dark-pink combine-video" (click)="combineVideos()" [disabled]="!validInputs"><span>Combine Video(s)</span></button>
+    </div>
+    <br>
+    <br>
+    
+    <div class="combined-video-container" [hidden]="!combinedVideoURL">
+        <video class="combined-video"  controls >
+            <source  class="combined-video-source" [src]="combinedVideoURL" type="{{combinedVidContentType}}">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+            
+    </div>
+</div>
